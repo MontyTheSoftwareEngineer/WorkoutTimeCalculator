@@ -12,10 +12,27 @@ def format_time(seconds):
     seconds = seconds % 60
     return f"{minutes}:{seconds:02d}"
 
+# Inject JavaScript to make the keyboard numeric on mobile
+st.markdown(
+    """
+    <script>
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => input.setAttribute('inputmode', 'numeric'));
+    </script>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.title("Workout Time Calculator 🏋️‍♂️")
 
 # Input Type Selection
 input_type = st.selectbox("Select Input Type", ["Start & End Times", "End Times & Rest Time"])
+
+# Provide guidance based on the selected mode
+if input_type == "Start & End Times":
+    st.info("Enter the **Start Time** and **End Time** for each round. The app will calculate the time taken for each round.")
+elif input_type == "End Times & Rest Time":
+    st.info("Enter the **End Time** for each round. The app will calculate the start time and duration based on the rest time you specify.")
 
 # Rest Time Options for "End Times & Rest Time" mode
 if input_type == "End Times & Rest Time":
@@ -136,14 +153,3 @@ if st.button("Calculate"):
             "Round Time (MM:SS)": [r[3] for r in results],
         }
     )
-
-# Add the banner at the bottom
-st.markdown(
-    """
-    ---
-    <div style="text-align: center; font-size: small;">
-        Code is OpenSource from <a href="https://github.com/MontyTheSoftwareEngineer/WorkoutTimeCalculator" target="_blank">MontyTheSoftwareEngineer</a>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
