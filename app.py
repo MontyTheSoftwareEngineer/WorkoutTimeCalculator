@@ -153,3 +153,14 @@ if st.button("Calculate"):
             "Round Time (MM:SS)": [r[3] for r in results],
         }
     )
+
+# Add the banner at the bottom
+st.markdown(
+    """
+    ---
+    <div style="text-align: center; font-size: small;">
+        Code is OpenSource from <a href="https://github.com/MontyTheSoftwareEngineer/WorkoutTimeCalculator" target="_blank">MontyTheSoftwareEngineer</a>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
