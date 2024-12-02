@@ -12,7 +12,7 @@ def format_time(seconds):
     seconds = seconds % 60
     return f"{minutes}:{seconds:02d}"
 
-st.title("CrossFit Workout Timer 🏋️‍♂️")
+st.title("Workout Time Calculator 🏋️‍♂️")
 
 # Input Type Selection
 input_type = st.selectbox("Select Input Type", ["Start & End Times", "End Times & Rest Time"])
@@ -136,3 +136,14 @@ if st.button("Calculate"):
             "Round Time (MM:SS)": [r[3] for r in results],
         }
     )
+
+# Add the banner at the bottom
+st.markdown(
+    """
+    ---
+    <div style="text-align: center; font-size: small;">
+        Code is OpenSource from <a href="https://github.com/MontyTheSoftwareEngineer/WorkoutTimeCalculator" target="_blank">MontyTheSoftwareEngineer</a>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
